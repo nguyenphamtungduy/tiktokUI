@@ -1,0 +1,13 @@
+.wrapper {
+    width: 240px;
+    background: rgba(255, 255, 255, 1);
+    padding: 0 8px;
+}
+
+.container {
+    padding: 20px 0 26px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding-left: 8px;
+}
