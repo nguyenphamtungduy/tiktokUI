@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import images from "../../../../assets/images";
-import HeadlessTippy from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
-import { Wrapper as PopperWrapper } from "../../../Popper";
-import AccountItem from "../../../AccountItem";
 import Button from "../../../Button";
 import Menu from "../../../Popper/Menu";
 import Switch from "../../../Switch";
+import Search from "../../../Search";
 
 const cx = classNames.bind(styles); // có thể đặt className có dấu "-"
 
@@ -67,8 +64,6 @@ const handleDarkLight = (e) => {
 };
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-
     const currentUsers = true;
 
     const userMenu = [
@@ -96,12 +91,6 @@ function Header() {
         },
     ];
 
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2, 3, 4]);
-        }, 0);
-    });
-
     const handleMenuChange = (menuItem) => {
         console.log(menuItem);
     };
@@ -112,46 +101,10 @@ function Header() {
                 <div className={cx("logo")}>
                     <img src={images.logo} alt="TikTok" />
                 </div>
+                {/* search */}
                 <div>
                     {/* dung div bao bao the tippy */}
-                    <HeadlessTippy
-                        interactive={true}
-                        visible={searchResult.length > 0}
-                        render={(attrs) => (
-                            <div
-                                className={cx("search-results")}
-                                tabIndex="-1"
-                                {...attrs}
-                            >
-                                <PopperWrapper>
-                                    <h4 className={cx("search-title")}>
-                                        Accounts
-                                    </h4>
-                                    <AccountItem />
-                                    <AccountItem />
-                                    <AccountItem />
-                                    <AccountItem />
-                                </PopperWrapper>
-                            </div>
-                        )}
-                    >
-                        <div className={cx("serach")}>
-                            <input
-                                type="text"
-                                placeholder="Search"
-                                spellCheck={false}
-                            ></input>
-                            <button className={cx("clear-btn")}>
-                                <img src={images.clear} alt="TikTok" />
-                            </button>
-                            <button className={cx("loading-btn")}>
-                                <img src={images.loading} alt="Loading" />
-                            </button>
-                            <button className={cx("search-btn")}>
-                                <img src={images.search} alt="Search videos" />
-                            </button>
-                        </div>
-                    </HeadlessTippy>
+                    <Search />
                 </div>
                 <div className={cx("actions")}>
                     <Button defaults>
