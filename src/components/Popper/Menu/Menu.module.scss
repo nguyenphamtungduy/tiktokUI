@@ -1,6 +1,6 @@
 //Menu
 .content {
-    width: 224px;
+    min-width: 224px;
     padding: 4px 8px;
     transition: opacity linear 1s;
 }
@@ -50,6 +50,7 @@
     margin-top: -8px;
     position: relative;
     height: 50px;
+    flex-shrink: 0;
 }
 
 .back-btn {
@@ -70,4 +71,9 @@
     font-size: 1.6rem;
     line-height: 1.3;
     letter-spacing: 0.03px;
+}
+
+.menu-body {
+    overflow: auto;
+    max-height: 590px;
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDebounce } from "../../hooks";
 import classNames from "classnames/bind";
+
+import * as searchService from "../../apiServices/searchServices";
 import styles from "./Search.module.scss";
 import images from "../../assets/images";
 import HeadlessTippy from "@tippyjs/react/headless";
@@ -25,23 +27,27 @@ function Search() {
             return;
         }
 
-        setLoading(true);
+        const fetchAPI = async () => {
+            setLoading(true);
+            const result = await searchService.search(debounced);
+            setSearchResult(result);
+            setLoading(false);
+        };
 
-        fetch(
-            `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-                searchValue
-            )}&type=less`
-        )
-            .then((response) => response.json())
-            .then((response) => {
-                setSearchResult(response.data);
-                setLoading(false);
-            })
-            .catch(() => setLoading(false));
+        fetchAPI();
     }, [debounced]);
 
     const handleHideResults = () => {
         setShowResults(false);
+    };
+
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        if (searchValue.startsWith(" ")) {
+            return;
+        }
+
+        setSearchValue(searchValue);
     };
 
     return (
@@ -51,7 +57,7 @@ function Search() {
             onClickOutside={handleHideResults}
             render={(attrs) => (
                 <div className={cx("search-results")} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
+                    <PopperWrapper className={cx("results-wrapper")}>
                         <h4 className={cx("search-title")}>Accounts</h4>
                         {searchResult.map((result) => (
                             <AccountItem
@@ -73,7 +79,7 @@ function Search() {
                     type="text"
                     placeholder="Search"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResults(true)}
                 />
                 {!!searchValue && !loading && (

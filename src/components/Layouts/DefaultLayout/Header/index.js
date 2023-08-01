@@ -7,7 +7,8 @@ import Button from "../../../Button";
 import Menu from "../../../Popper/Menu";
 import Switch from "../../../Switch";
 import Search from "../../../Search";
-
+import routesConfig from "../../../../configs/routes";
+import { Link } from "react-router-dom";
 const cx = classNames.bind(styles); // có thể đặt className có dấu "-"
 
 const MENU_ITEMS = [
@@ -17,6 +18,70 @@ const MENU_ITEMS = [
         children: {
             title: "Language",
             data: [
+                {
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    code: "vi",
+                    title: "Tiếng Việt",
+                },
+                {
+                    code: "fr",
+                    title: "Français",
+                },
+                {
+                    code: "ja",
+                    title: "日本",
+                },
+                {
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    code: "vi",
+                    title: "Tiếng Việt",
+                },
+                {
+                    code: "fr",
+                    title: "Français",
+                },
+                {
+                    code: "ja",
+                    title: "日本",
+                },
+                {
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    code: "vi",
+                    title: "Tiếng Việt",
+                },
+                {
+                    code: "fr",
+                    title: "Français",
+                },
+                {
+                    code: "ja",
+                    title: "日本",
+                },
+                {
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    code: "vi",
+                    title: "Tiếng Việt",
+                },
+                {
+                    code: "fr",
+                    title: "Français",
+                },
+                {
+                    code: "ja",
+                    title: "日本",
+                },
                 {
                     code: "en",
                     title: "English",
@@ -98,9 +163,9 @@ function Header() {
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
-                <div className={cx("logo")}>
+                <Link to={routesConfig.home} className={cx("logo")}>
                     <img src={images.logo} alt="TikTok" />
-                </div>
+                </Link>
                 {/* search */}
                 <div>
                     {/* dung div bao bao the tippy */}
