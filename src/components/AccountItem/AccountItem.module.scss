@@ -1,8 +1,6 @@
 .wrapper {
     display: flex;
     align-items: center;
-    padding: 9px 16px;
-
     &:hover {
         cursor: pointer;
         background: rgba(22, 24, 35, 0.03);
@@ -21,11 +19,10 @@
 }
 
 .name {
-    display: flex;
-    align-items: center;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 1.3;
-    font-weight: 600;
+    font-weight: 400;
+    color: #16182380;
 }
 
 .check {
@@ -33,8 +30,9 @@
 }
 
 .username {
-    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
     line-height: 1.3;
-    font-weight: 400;
-    color: #16182380;
+    font-weight: 600;
 }

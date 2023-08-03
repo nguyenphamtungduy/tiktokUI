@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDebounce } from "../../hooks";
 import classNames from "classnames/bind";
 
-import * as searchService from "../../apiServices/searchServices";
+import * as apiService from "../../services/apiServices";
 import styles from "./Search.module.scss";
 import images from "../../assets/images";
 import HeadlessTippy from "@tippyjs/react/headless";
@@ -17,7 +17,7 @@ function Search() {
     const [showResults, setShowResults] = useState(true);
     const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
@@ -29,13 +29,14 @@ function Search() {
 
         const fetchAPI = async () => {
             setLoading(true);
-            const result = await searchService.search(debounced);
+            const result = await apiService.search(debouncedValue);
+            console.log(result);
             setSearchResult(result);
             setLoading(false);
         };
 
         fetchAPI();
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handleHideResults = () => {
         setShowResults(false);
@@ -61,6 +62,7 @@ function Search() {
                         <h4 className={cx("search-title")}>Accounts</h4>
                         {searchResult.map((result) => (
                             <AccountItem
+                                className={cx("account-item")}
                                 key={result.id}
                                 data={result}
                                 onHide={() => {

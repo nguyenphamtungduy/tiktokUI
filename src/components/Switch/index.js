@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Switch.module.scss";
 
@@ -16,4 +17,7 @@ function Switch({ onChange }) {
     );
 }
 
+Switch.propTypes = {
+    onChange: PropTypes.func.isRequired,
+};
 export default Switch;

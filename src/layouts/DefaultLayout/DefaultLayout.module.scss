@@ -1,0 +1,25 @@
+.wrapper {
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 100%;
+    min-height: 1100px;
+    display: flex;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    min-height: 1000px;
+    margin-left: 232px;
+    min-width: 420px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
